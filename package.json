@@ -1,0 +1,24 @@
+{
+  "name": "l-atelier-d-opie",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.1",
+    "gsap": "npm:gsap-trial@^3.12.7",
+    "imagesloaded": "^5.0.0",
+    "masonry-layout": "^4.2.2",
+    "tailwindcss": "^4.0.1",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.11",
+    "vite-plugin-vue-devtools": "^7.7.0"
+  }
+}

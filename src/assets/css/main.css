@@ -1,0 +1,46 @@
+@import "./base.css";
+@import "tailwindcss";
+
+@theme {
+  --color-opie-blue: #87beea;
+  --color-opie-sand: #f8c975;
+  --color-opie-mint: #a3efd4;
+  --color-opie-gray: #757575;
+
+  --font-caveat: "Caveat", "sans-serif";
+  --font-acumin: "acumin-variable", "sans-serif";
+}
+
+.text-fluid {
+  font-size: clamp(1.5rem, 10vw, 8rem);
+}
+
+.responsive-icon {
+  width: clamp(50px, 20vw, 300px);
+  height: auto;
+}
+
+.text-shadow {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text-shadow-bold {
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.25);
+}
+
+.element-shadow {
+  box-shadow: 2px 8px 6px rgba(0, 0, 0, 0.25);
+}
+
+button {
+  text-transform: uppercase;
+  font-family: var(--font-acumin);
+  font-size: 24px;
+  line-height: 100%;
+  font-variation-settings: "wght" 400, "wdth" 110, "slnt" -12;
+  background-color: var(--color-opie-sand);
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
