@@ -1,5 +1,5 @@
 // Ce fichier gère l'animation de la section galerie à l'aide de GSAP et ScrollTrigger.
-// L'animation synchronise la transition entre la section héros et la galerie.
+// La logique consiste à synchroniser la transition entre la section héros et la galerie, en fixant la section galerie pendant l'animation.
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { onUnmounted } from "vue";
