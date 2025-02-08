@@ -2,6 +2,7 @@
 import { useHeaderAnimation } from "@/composables/useHeaderAnimation";
 import { onMounted } from "vue";
 
+// Appel de la fonction d'animation du header qui utilise GSAP et ScrollTrigger
 onMounted(() => {
   useHeaderAnimation();
 });

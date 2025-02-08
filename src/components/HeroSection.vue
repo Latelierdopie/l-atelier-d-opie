@@ -2,6 +2,7 @@
 import { useHeroAnimation } from "@/composables/useHeroAnimation";
 import { onMounted } from "vue";
 
+// Appel de la fonction d'animation de la section héro utilisant GSAP et SplitText
 onMounted(() => {
   useHeroAnimation();
 });

@@ -1,70 +1,69 @@
+// Ce fichier gère les animations du header en utilisant GSAP et ScrollTrigger.
+// Il définit les états initiaux et anime progressivement les éléments du header lors du scroll.
 import gsap from "@/plugins/gsap";
 import { onUnmounted } from "vue";
 
 export function useHeaderAnimation() {
-  // État initial : masquer les éléments du header (sans modifier la hauteur globale)
-  gsap.set(".header-content", { opacity: 0 });
-  gsap.set(".header-button", { opacity: 0, x: "-200%", scaleX: 0.8 });
-  gsap.set(".responsive-icon", { opacity: 0, scale: 4 });
+  // Initialisation : Masquer et positionner les éléments du header pour préparer l'animation.
+  gsap.set(".header-content", { opacity: 0 }); // Cache le contenu principal du header
+  gsap.set(".header-button", { opacity: 0, x: "-200%", scaleX: 0.8 }); // Place le bouton hors de l'écran à gauche
+  gsap.set(".responsive-icon", { opacity: 0, scale: 4 }); // Agrandit et masque l'icône responsive
 
-  // Animation de l'icône responsive
+  // Animation d'apparition de l'icône responsive pour attirer l'attention
   gsap.to(".responsive-icon", {
     duration: 1,
     opacity: 1,
     ease: "power2.in",
   });
 
-  // Créer une timeline pour animer uniquement le contenu du header
+  // Création d'une timeline synchronisée avec le scroll pour animer le header
   const tl = gsap
     .timeline({
       scrollTrigger: {
-        trigger: ".header-placeholder", // trigger sur le conteneur stable
-        start: "top top",
-        end: "+=300",
-        scrub: 1,
+        trigger: ".header-placeholder", // Zone de déclenchement du header
+        start: "top top", // Début de l'animation quand le header entre dans le viewport
+        end: "+=300", // Durée de l'animation en fonction du scroll (300px)
+        scrub: 1, // L'animation suit le scroll pour une synchronisation fluide
         anticipatePin: 1,
-        markers: false, // activer pour déboguer si besoin
+        markers: false, // Activez pour déboguer les déclencheurs de scroll
       },
     })
     .to(".responsive-icon", {
-      scale: 1,
+      scale: 1, // Réduit l'icône à sa taille normale
       ease: "power2.inOut",
     })
     .to(
       ".header-content",
       {
-        opacity: 1,
-        stagger: 0.2,
+        opacity: 1, // Fait apparaître le contenu du header
+        stagger: 0.2, // Délai progressif entre chaque élément pour un effet de cascade
         ease: "power2.inOut",
       },
-      "-=0.5"
+      "-=0.5" // Commence cette animation un peu avant la fin de l'animation précédente
     )
-    // Ajout d'une translation sur l'axe Y pour recréer l'effet de déplacement
     .to("header", {
-      y: "-100%",
+      y: "-100%", // Translate le header vers le haut pour un effet de disparition
       ease: "power2.inOut",
       duration: 0.5,
     })
-
-    // Vous pouvez animer d'autres éléments en changeant leurs propriétés (mais évitez de modifier la hauteur globale)
     .fromTo(
       ".header-button",
       {
         opacity: 0,
-        x: "-600%", // départ à gauche
+        x: "-600%", // Position initiale hors de l'écran à gauche
         scaleX: 0.6,
-        ease: "power2.inOut",
       },
       {
         opacity: 1,
-        x: "0%",
+        x: "0%", // Position finale alignée
         scaleX: 1,
         duration: 1.5,
-        ease: "elastic.out(1, 0.5)",
+        ease: "elastic.out(1, 0.5)", // Effet élastique pour un rebond dynamique
       },
       "+=0.2"
     );
 
+  // Nettoyage de la timeline et du ScrollTrigger lors du démontage du composant
   onUnmounted(() => {
     if (tl.scrollTrigger) {
       tl.scrollTrigger.kill();
