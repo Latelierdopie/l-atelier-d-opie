@@ -7,7 +7,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="w-full max-w-5xl mx-auto px-8 min-h-[60vh]">
+  <div class="w-full max-w-5xl mx-auto px-8 min-h-[30vh]">
     <div
       id="hero-text"
       class="flex flex-col space-y-8 text-center font-caveat text-5xl text-opie-gray text-shadow"

@@ -4,11 +4,9 @@ import HeaderSection from "./components/HeaderSection.vue";
 import GallerySection from "./components/GallerySection.vue";
 import { onMounted } from "vue";
 import { useScrollSmoother } from "./composables/useScrollSmoother";
-import { useGalleryAnimation } from "./composables/useGalleryAnimation";
 
 onMounted(() => {
   useScrollSmoother();
-  useGalleryAnimation();
 });
 </script>
 
@@ -19,7 +17,7 @@ onMounted(() => {
         class="w-full min-h-screen bg-linear-to-br from-opie-mint/100 from-0% to-opie-blue/100 to-100%"
       >
         <!-- Contenu -->
-        <div class="flex flex-col gap-96">
+        <div class="flex flex-col">
           <div class="sticky top-10">
             <!-- Header Section -->
             <HeaderSection />
@@ -28,7 +26,7 @@ onMounted(() => {
           <!-- Hero Section -->
           <div
             id="hero-section"
-            class="flex-1 flex items-center justify-center sticky top-[30%]"
+            class="flex-1 flex items-center justify-center"
           >
             <HeroSection />
           </div>

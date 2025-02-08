@@ -1,4 +1,5 @@
 import gsap, { SplitText } from "@/plugins/gsap";
+import { onUnmounted } from "vue";
 
 export function useHeroAnimation() {
   // Appliquer une perspective pour les effets 3D
@@ -10,16 +11,14 @@ export function useHeroAnimation() {
   // Créer une timeline maîtresse avec un ScrollTrigger
   const masterTL = gsap.timeline({
     scrollTrigger: {
-      trigger: "#hero-text", // Le conteneur global servant de référence
-      start: "top bottom", // Lancement lorsque le conteneur atteint 20% du viewport
-      end: "+=400", // Ajuster cette valeur en fonction de la durée globale désirée
+      trigger: "#hero-section", // Le conteneur global servant de référence
+
+      start: "top 30%", // Lancement lorsque le conteneur atteint 20% du viewport
+      end: "+=600 top", // Ajuster cette valeur en fonction de la durée globale désirée
       scrub: 1, // La timeline suit le scroll
-      onComplete: () => {
-        // Optionnel : ajouter une classe pour indiquer que l'animation est terminée
-        document
-          .querySelector("#hero-section")
-          .classList.add("animation-complete");
-      },
+      pin: true,
+      pinSpacing: true,
+      markers: true,
     },
   });
 
@@ -46,5 +45,12 @@ export function useHeroAnimation() {
       ease: "back.out(1.7)",
       stagger: 0.05, // L'effet splitText : apparition progressive des caractères
     });
+  });
+  // Nettoyage lors du démontage du composant pour éviter toute fuite de mémoire
+  onUnmounted(() => {
+    if (masterTL.scrollTrigger) {
+      masterTL.scrollTrigger.kill();
+    }
+    masterTL.kill();
   });
 }

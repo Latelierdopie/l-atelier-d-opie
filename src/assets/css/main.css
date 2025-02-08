@@ -11,6 +11,22 @@
   --font-acumin: "acumin-variable", "sans-serif";
 }
 
+/* Positionnez le header en bas du placeholder pour obtenir l'effet initial */
+header {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(15%);
+  height: 25vh;
+}
+
+/* Le placeholder conserve l'espace nécessaire pour le header */
+.header-placeholder {
+  min-height: 50vh;
+  position: relative;
+}
+
 .text-fluid {
   font-size: clamp(1.5rem, 10vw, 8rem);
 }
